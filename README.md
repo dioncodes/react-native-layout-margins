@@ -1,12 +1,15 @@
 # react-native-layout-margins
 
-A simple react native module that allows to query [layoutMargins](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/) of a current root view.
+A simple react native module that allows to query [layoutMargins](https://developer.apple.com/documentation/uikit/uiview/1622651-layoutmarginsguide) of a current root view according to the [iOS Layout Design Guides](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/)
 
 Based on [delightfulstudio/react-native-safe-area-insets](https://github.com/DelightfulStudio/react-native-safe-area-insets).
 
 # Installation
 
-`yarn add @dioncodes/react-native-layout-margins`
+```sh
+yarn add @dioncodes/react-native-layout-margins
+cd ios && pod install
+```
 
 # Manual linking
 1. Open your project in XCode
