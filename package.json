@@ -1,0 +1,25 @@
+{
+    "name": "@dioncodes/react-native-layout-margins",
+    "version": "0.0.4",
+    "description": "React Native Layout Margins",
+    "author": "Dion Purushotham",
+    "license": "MIT",
+    "main": "lib/",
+    "scripts": {
+        "test": "true",
+        "build": "true",
+        "release-notes": "conventional-github-releaser -p eslint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dioncodes/react-native-layout-margins.git"
+    },
+    "peerDependencies": {
+        "react": ">=16.4.2",
+        "react-native": ">=0.55.4"
+    },
+    "devDependencies": {
+        "@textpress/eslint-config-textpress": "^0.4.0",
+        "conventional-github-releaser": "^3.1.2"
+    }
+}
