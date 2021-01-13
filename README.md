@@ -14,6 +14,8 @@ yarn add @dioncodes/react-native-layout-margins
 cd ios && pod install
 ```
 
+*Important:* If you are updating from version 1.2 or earlier and using the components, you will need to add the `LayoutMarginProvider` (see Component Usage below).
+
 # Manual linking
 1. Open your project in XCode
 1. Add `./node_modules/@dioncodes/react-native-layout-margins/ios/RNLayoutMargins.xcodeproj` to `Libraries` in your project
@@ -25,6 +27,19 @@ cd ios && pod install
 
 ## Component Usage
 
+To use the components you need to wrap your screens into a `<LayoutMarginProvider>`.
+
+```javascript
+import { LayoutMarginProvider } from '@dioncodes/react-native-layout-margins';
+...
+
+const App = () => (
+	<LayoutMarginProvider>
+		...
+	</LayoutMarginProvider>
+);
+```
+
 ```javascript
 import { ContentInsetView } from '@dioncodes/react-native-layout-margins';
 ...
@@ -33,13 +48,13 @@ import { ContentInsetView } from '@dioncodes/react-native-layout-margins';
 </ContentInsetView>
 ```
 
-```javascript
+```jsx
 <ContentInsetView vertical horizontal>
 	<Text>I'm aligned according to the iOS layout margins (including safe area), vertically and horizontally.</Text>
 </ContentInsetView>
 ```
 
-```javascript
+```jsx
 <ContentInsetView vertical>
 	<Text>I'm vertically (but not horizontally) aligned according to the iOS layout margins (including safe area).</Text>
 </ContentInsetView>
@@ -47,7 +62,7 @@ import { ContentInsetView } from '@dioncodes/react-native-layout-margins';
 
 Also supporting a (react-native-gesture-handler) FlatList with content insets:
 
-```javascript
+```jsx
 <ContentInsetFlatList
 	data={...}
 	renderItem={...}
@@ -67,9 +82,37 @@ Also supporting a (react-native-gesture-handler) FlatList with content insets:
 * `bottom` (boolean, optional)
 * `style` (optional [`ViewStyle`](https://reactnative.dev/docs/view-style-props) prop that is passed to the `View` container)
 
+ContentInsetFlatList also accepts all FlatList props.
+
 If no property is set, only the horizontal padding is active.
 
-## Manual Usage
+## Manual Usage With provider
+
+```javascript
+import React from 'react';
+import { View } from 'react-native';
+
+import { useGetLayoutMarginProvider } from '@dioncodes/react-native-layout-margins';
+
+export default function ExampleScreen() {
+	const layoutMarginContext = useGetLayoutMarginProvider();
+	const insets = layoutMarginContext.currentInsets;
+
+	const insetStyle = {
+		paddingLeft: insets.left,
+		paddingRight: insets.right,
+	};
+
+	return (
+		<View style={insetStyle}>
+			<Text>I'm aligned according to the iOS layout margins!</Text>
+		</View>
+	);
+}
+```
+
+
+## Manual Usage Without Provider
 
 ```javascript
 import React, { useLayoutEffect, useState } from 'react';

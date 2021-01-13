@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Context } from 'react';
 import { ViewStyle, FlatListProps } from 'react-native';
 
 declare module '@dioncodes/react-native-layout-margins' {
-	export function currentInsets(): Promise<{
+	type InsetType = {
 		left: number,
 		right: number,
 		bottom: number,
 		top: number,
-	}>;
+	};
+
+	export function currentInsets(): Promise<InsetType>;
 
 	export const ContentInsetView: React.FC<{
 		children: React.ReactNode,
@@ -30,5 +32,12 @@ declare module '@dioncodes/react-native-layout-margins' {
 		style?: ViewStyle,
 	}
 
+	type LayoutMarginProviderContextType = {
+		currentInsets: InsetType,
+	}
+
 	export const ContentInsetFlatList: React.FC<ContentInsetFlatListProps<any>>;
+	export const LayoutMarginProviderContext: Context<{}>;
+	export const LayoutMarginProvider: React.FC<{}>;
+	export const useGetLayoutMarginProvider: () => LayoutMarginProviderContextType;
 }
