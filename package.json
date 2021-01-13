@@ -1,6 +1,6 @@
 {
     "name": "@dioncodes/react-native-layout-margins",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "description": "React Native Layout Margins",
     "author": "Dion Purushotham",
     "license": "MIT",
@@ -16,8 +16,8 @@
     },
     "peerDependencies": {
         "react": ">=16.4.2",
-		"react-native": ">=0.55.4",
-		"react-native-gesture-handler": "^1.9.0"
+        "react-native": ">=0.55.4",
+        "react-native-gesture-handler": "^1.9.0"
     },
     "devDependencies": {
         "@textpress/eslint-config-textpress": "^0.4.0",
