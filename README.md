@@ -20,7 +20,41 @@ cd ios && pod install
 1. Click button `+`
 1. Add `libRNLayoutMargins.a` (if it's not present, build the project and try again)
 
-## Usage
+## Component Usage
+
+```javascript
+import { ContentInsetView } from '@dioncodes/react-native-layout-margins';
+...
+<ContentInsetView>
+	<Text>I'm aligned according to the iOS layout margins!</Text>
+</ContentInsetView>
+```
+
+```javascript
+<ContentInsetView vertical horizontal>
+	<Text>I'm aligned according to the iOS layout margins (including safe area), vertically and horizontally.</Text>
+</ContentInsetView>
+```
+
+```javascript
+<ContentInsetView vertical>
+	<Text>I'm vertically (but not horizontally) aligned according to the iOS layout margins (including safe area).</Text>
+</ContentInsetView>
+```
+
+*Props*:
+
+* `horizontal` (boolean, optional)
+* `vertical` (boolean, optional)
+* `top` (boolean, optional)
+* `left` (boolean, optional)
+* `right` (boolean, optional)
+* `bottom` (boolean, optional)
+* `style` (optional [`ViewStyle`](https://reactnative.dev/docs/view-style-props) prop that is passed to the `View` container)
+
+If no property is set, only the horizontal padding is active.
+
+## Manual Usage
 
 ```javascript
 import React, { useLayoutEffect, useState } from 'react';
@@ -32,14 +66,7 @@ export default function ExampleScreen() {
 	const [insetStyle, setInsetStyle] = useState({ paddingLeft: 0, paddingRight: 0 });
 
 	useLayoutEffect(() => {
-		currentInsets().then((insets) => {
-			setInsetStyle({
-				paddingLeft: insets.left,
-				paddingRight: insets.right,
-			});
-		});
-
-		const rotationListener = () => {
+		const setInsets = () => {
 			currentInsets().then((insets) => {
 				setInsetStyle({
 					paddingLeft: insets.left,
@@ -48,9 +75,11 @@ export default function ExampleScreen() {
 			});
 		};
 
-		Dimensions.addEventListener('change', rotationListener);
+		setInsets();
+		Dimensions.addEventListener('change', setInsets);
+
 		return function cleanup() {
-			Dimensions.removeEventListener('change', rotationListener);
+			Dimensions.removeEventListener('change', setInsets);
 		};
 	}, []);
 
