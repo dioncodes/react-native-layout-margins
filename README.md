@@ -1,6 +1,9 @@
 # react-native-layout-margins
 
-A simple react native module that allows to query [layoutMargins](https://developer.apple.com/documentation/uikit/uiview/1622651-layoutmarginsguide) of a current root view according to the [iOS Layout Design Guides](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/)
+A simple react native module for views that consider the iOS [layoutMargins](https://developer.apple.com/documentation/uikit/uiview/1622651-layoutmarginsguide) (including safe area insets).
+Supports two components for easy usage (`<ContentInsetView />` and `<ContentInsetFlatList />`) and a method for querying the margins of the current root view.
+
+Please read the [iOS Layout Design Guides](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/) for more details on the layout margins.
 
 Based on [delightfulstudio/react-native-safe-area-insets](https://github.com/DelightfulStudio/react-native-safe-area-insets).
 
@@ -40,6 +43,18 @@ import { ContentInsetView } from '@dioncodes/react-native-layout-margins';
 <ContentInsetView vertical>
 	<Text>I'm vertically (but not horizontally) aligned according to the iOS layout margins (including safe area).</Text>
 </ContentInsetView>
+```
+
+Also supporting a (react-native-gesture-handler) FlatList with content insets:
+
+```javascript
+<ContentInsetFlatList
+	data={...}
+	renderItem={...}
+	keyExtractor={(item) => item.id}
+	vertical
+	horizontal
+/>
 ```
 
 *Props*:
