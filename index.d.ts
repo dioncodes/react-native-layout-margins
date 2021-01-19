@@ -30,11 +30,11 @@ declare module '@dioncodes/react-native-layout-margins' {
 		top?: boolean,
 		bottom?: boolean,
 		style?: ViewStyle,
-		initialScrollTo: {
+		initialScrollTo?: {
 			index: number,
-			animated: boolean,
-			offset: number,
-			delay: number,
+			animated?: boolean,
+			offset?: number,
+			delay?: number,
 		},
 	}
 
